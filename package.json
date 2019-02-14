@@ -1,0 +1,74 @@
+{
+	"name": "sample",
+	"displayName": "sample",
+	"description": "blog sample",
+	"version": "0.0.3",
+	"publisher": "List",
+	"engines": {
+		"vscode": "^1.30.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.dfxk"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.dfxk",
+				"title": "dfxk"
+			}
+		],
+		"configuration": {
+			"type": "object",
+			"title": "Plugin dfxk config. dfxk 插件配置",
+			"properties": {
+				"dfxk.jsonUrl": {
+					"type": "string",
+					"default": "",
+					"description": "Plugin dfxk jsonUrl.dfxk 设置json地址"
+				},
+				"dfxk.replaceUrl": {
+					"type": "string",
+					"default": "",
+					"description": "Plugin dfxk replaceUrl.dfxk 设置interface替换地址"
+				},
+				"dfxk.email": {
+					"type": "string",
+					"default": "",
+					"description": "Plugin dfxk email.dfxk 设置email"
+				},
+				"dfxk.password": {
+					"type": "string",
+					"default": "",
+					"description": "Plugin dfxk password.dfxk 设置password"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"@types/mocha": "^2.2.42",
+		"@types/node": "^8.10.25",
+		"querystring": "^0.2.0",
+		"tslint": "^5.8.0",
+		"typescript": "^3.1.4",
+		"vscode": "^1.1.25"
+	},
+	"dependencies": {
+		"@types/node-fetch": "^2.1.6",
+		"@types/underscore": "^1.8.9",
+		"bluebird": "^3.5.3",
+		"es6-promise": "^4.2.5",
+		"node-fetch": "^2.3.0",
+		"underscore": "^1.9.1"
+	}
+}
