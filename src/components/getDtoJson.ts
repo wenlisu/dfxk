@@ -74,9 +74,12 @@ class GetDtoJson {
                 id,
             };
             const res = await post(domain, json);
-            vsHelp.showInfo(`${JSON.stringify(res)}`);
             if(res.isOk) {
                 this.onReadDto(res.repository.result.json);
+            } else if(!res.isOk) {
+                vsHelp.showInfo(`${res.message}请检查接口工具`);
+            } else if(!res || res === undefined) {
+                vsHelp.showInfo(`请检查接口工具服务是否关闭`);
             }
         }
     }

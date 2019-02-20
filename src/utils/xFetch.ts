@@ -65,8 +65,8 @@ async function xFetch(url: string, method: 'GET' | 'POST' | 'PUT' | 'DELETE', da
   } else {
     url = data ? `${url}?${querystring.stringify(data)}` : url;
   }
-  console.log('网络请求链接:', url);
-  console.log('网络请求参数:', opts);
+  // console.log('网络请求链接:', url);
+  // console.log('网络请求参数:', opts);
   try {
     const res = await Promise.race([
       fetch(url, opts)
@@ -79,10 +79,10 @@ async function xFetch(url: string, method: 'GET' | 'POST' | 'PUT' | 'DELETE', da
         }, 10000);
       }),
     ]);
-    console.log('网络请求成功:', res);
+    // console.log('网络请求成功:', res);
     return res;
   } catch (error) {
-    console.error('网络请求错误:', error);
+    // console.error('网络请求错误:', error);
     let errorMessage = '未知错误';
     if (error.des || error.msg) {
       errorMessage = error.des || error.msg;

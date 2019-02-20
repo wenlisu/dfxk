@@ -64,9 +64,14 @@ class GetDtoJson {
                     id,
                 };
                 const res = yield xFetch_1.post(domain, json);
-                vsHelp_1.default.showInfo(`${JSON.stringify(res)}`);
                 if (res.isOk) {
                     this.onReadDto(res.repository.result.json);
+                }
+                else if (!res.isOk) {
+                    vsHelp_1.default.showInfo(`${res.message}请检查接口工具`);
+                }
+                else if (!res || res === undefined) {
+                    vsHelp_1.default.showInfo(`请检查接口工具服务是否关闭`);
                 }
             }
         });

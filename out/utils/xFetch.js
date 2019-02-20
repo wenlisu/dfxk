@@ -67,8 +67,8 @@ function xFetch(url, method, data, headers = {}, errorHandle) {
         else {
             url = data ? `${url}?${querystring.stringify(data)}` : url;
         }
-        console.log('网络请求链接:', url);
-        console.log('网络请求参数:', opts);
+        // console.log('网络请求链接:', url);
+        // console.log('网络请求参数:', opts);
         try {
             const res = yield Promise.race([
                 fetch(url, opts)
@@ -81,11 +81,11 @@ function xFetch(url, method, data, headers = {}, errorHandle) {
                     }, 10000);
                 }),
             ]);
-            console.log('网络请求成功:', res);
+            // console.log('网络请求成功:', res);
             return res;
         }
         catch (error) {
-            console.error('网络请求错误:', error);
+            // console.error('网络请求错误:', error);
             let errorMessage = '未知错误';
             if (error.des || error.msg) {
                 errorMessage = error.des || error.msg;
