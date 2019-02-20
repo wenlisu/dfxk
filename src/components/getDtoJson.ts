@@ -29,7 +29,7 @@ class GetDtoJson {
      * 初始化
      * 
      * @private
-     * @memberof Background
+     * @memberof dfxk
      */
     private initialize = async () => {
 
@@ -38,10 +38,20 @@ class GetDtoJson {
         if (firstload) {
             this.init(true);
         }
+    }
 
+    /**
+     * 执行执行函数
+     * 
+     * @returns {void} 
+     * @memberof dfxk
+     */ 
+    public extension(): void {
+        this.init(true);
     }
 
     private init = async(refresh?: boolean) => {
+        await this.checkFirstload();
         let lastConfig = this.config;  // 之前的配置
         let config = vscode.workspace.getConfiguration('dfxk'); // 当前用户配置
         // 1.如果配置文件改变到时候，当前插件配置没有改变，则返回
@@ -51,16 +61,20 @@ class GetDtoJson {
         }
         // 3.保存当前配置
         this.config = config; // 更新配置
-    
+        if (!this.info.id) {
+            vsHelp.showInfo(`请检查配置`);
+            return;
+        }
         if(this.config.jsonUrl && this.info.id) {
             const url = this.config.jsonUrl;
             const id = getQueryString('id', url);
-            const domain = 'http://localhost:8090/repository/vsceExportDJson';
+            const domain = 'http://192.168.102.8:8090/repository/vsceExportDJson';
             const json = {
                 sessionId: this.info.id,
                 id,
             };
             const res = await post(domain, json);
+            vsHelp.showInfo(`${JSON.stringify(res)}`);
             if(res.isOk) {
                 this.onReadDto(res.repository.result.json);
             }
@@ -102,7 +116,8 @@ class GetDtoJson {
                 this.info.fullname = null;
                 this.info.email = null;
             }
-            fs.writeFileSync(this.configPath, JSON.stringify(this.info, null, '    '), 'utf-8');
+            await fs.writeFileSync(this.configPath, JSON.stringify(this.info, null, '    '), 'utf-8');
+            this.info = JSON.parse(fs.readFileSync(this.configPath, 'utf-8'));
             return true;
         }
 
@@ -114,7 +129,7 @@ class GetDtoJson {
             email: params.email,
             password: params.password
         };
-        const res = await post('http://localhost:8090/account/login', json);
+        const res = await post('http://192.168.102.8:8090/account/login', json);
         if(res.data.errMsg) {
             vsHelp.showInfo(res.data.errMsg);
             return;

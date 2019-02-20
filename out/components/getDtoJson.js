@@ -31,7 +31,7 @@ class GetDtoJson {
         * 初始化
         *
         * @private
-        * @memberof Background
+        * @memberof dfxk
         */
         this.initialize = () => __awaiter(this, void 0, void 0, function* () {
             let firstload = yield this.checkFirstload(); // 是否初次加载插件
@@ -41,6 +41,7 @@ class GetDtoJson {
             }
         });
         this.init = (refresh) => __awaiter(this, void 0, void 0, function* () {
+            yield this.checkFirstload();
             let lastConfig = this.config; // 之前的配置
             let config = vscode.workspace.getConfiguration('dfxk'); // 当前用户配置
             // 1.如果配置文件改变到时候，当前插件配置没有改变，则返回
@@ -50,15 +51,20 @@ class GetDtoJson {
             }
             // 3.保存当前配置
             this.config = config; // 更新配置
+            if (!this.info.id) {
+                vsHelp_1.default.showInfo(`请检查配置`);
+                return;
+            }
             if (this.config.jsonUrl && this.info.id) {
                 const url = this.config.jsonUrl;
                 const id = index_1.getQueryString('id', url);
-                const domain = 'http://localhost:8090/repository/vsceExportDJson';
+                const domain = 'http://192.168.102.8:8090/repository/vsceExportDJson';
                 const json = {
                     sessionId: this.info.id,
                     id,
                 };
                 const res = yield xFetch_1.post(domain, json);
+                vsHelp_1.default.showInfo(`${JSON.stringify(res)}`);
                 if (res.isOk) {
                     this.onReadDto(res.repository.result.json);
                 }
@@ -100,7 +106,8 @@ class GetDtoJson {
                     this.info.fullname = null;
                     this.info.email = null;
                 }
-                fs.writeFileSync(this.configPath, JSON.stringify(this.info, null, '    '), 'utf-8');
+                yield fs.writeFileSync(this.configPath, JSON.stringify(this.info, null, '    '), 'utf-8');
+                this.info = JSON.parse(fs.readFileSync(this.configPath, 'utf-8'));
                 return true;
             }
             return false;
@@ -110,7 +117,7 @@ class GetDtoJson {
                 email: params.email,
                 password: params.password
             };
-            const res = yield xFetch_1.post('http://localhost:8090/account/login', json);
+            const res = yield xFetch_1.post('http://192.168.102.8:8090/account/login', json);
             if (res.data.errMsg) {
                 vsHelp_1.default.showInfo(res.data.errMsg);
                 return;
@@ -119,6 +126,15 @@ class GetDtoJson {
         });
         this.vscode = _vscode;
         this.initialize();
+    }
+    /**
+     * 执行执行函数
+     *
+     * @returns {void}
+     * @memberof dfxk
+     */
+    extension() {
+        this.init(true);
     }
     /**
      * 初始化，并开始监听配置文件改变

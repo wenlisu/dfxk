@@ -65,7 +65,7 @@ async function xFetch(url: string, method: 'GET' | 'POST' | 'PUT' | 'DELETE', da
   } else {
     url = data ? `${url}?${querystring.stringify(data)}` : url;
   }
-  // console.log('网络请求链接:', url);
+  console.log('网络请求链接:', url);
   console.log('网络请求参数:', opts);
   try {
     const res = await Promise.race([

@@ -12,7 +12,7 @@ export function activate(context: vscode.ExtensionContext) {
 	var json = new GetDtoJson(vscode);
 
 	context.subscriptions.push(vscode.commands.registerCommand('extension.dfxk', function () {
-		json.initialize();
+		json.extension();
 	}));
 	context.subscriptions.push(json.watch());
 }

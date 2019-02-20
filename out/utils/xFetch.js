@@ -67,7 +67,7 @@ function xFetch(url, method, data, headers = {}, errorHandle) {
         else {
             url = data ? `${url}?${querystring.stringify(data)}` : url;
         }
-        // console.log('网络请求链接:', url);
+        console.log('网络请求链接:', url);
         console.log('网络请求参数:', opts);
         try {
             const res = yield Promise.race([

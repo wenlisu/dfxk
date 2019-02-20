@@ -7,8 +7,8 @@
         "out": true // set this to false to include "out" folder in search results
     },
     // Turn off tsc task auto detection since we have the necessary tasks as npm scripts
-    "dfxk.jsonUrl":  "http://localhost:3000/organization/repository/editor?id=19&type=181",
-    "dfxk.replaceUrl": "/Users/web/Desktop/interface.ts",
-    "dfxk.email": "415357008@qq.com",
-    "dfxk.password": "123",
+    "dfxk.jsonUrl": "http://192.168.102.8:3000/organization/repository/editor?id=21",
+    "dfxk.email": "fzhihao@outlook.com",
+    "dfxk.password": "abc82213130",
+    "dfxk.replaceUrl": "/Users/web/Desktop/interface.ts"
 }

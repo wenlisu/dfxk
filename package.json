@@ -1,8 +1,8 @@
 {
-	"name": "sample",
-	"displayName": "sample",
-	"description": "blog sample",
-	"version": "0.0.3",
+	"name": "dfxk",
+	"displayName": "dfxk",
+	"description": "dfxk",
+	"version": "0.0.8",
 	"publisher": "List",
 	"engines": {
 		"vscode": "^1.30.0"
@@ -23,7 +23,7 @@
 		],
 		"configuration": {
 			"type": "object",
-			"title": "Plugin dfxk config. dfxk 插件配置",
+			"title": "DFXK",
 			"properties": {
 				"dfxk.jsonUrl": {
 					"type": "string",
