@@ -9,6 +9,7 @@ class Json2Ts{
     }
 
     convert = (content: any, scope: any) => {
+        this.indexBox = [];
         this.scope = scope;
         var jsonContent = content;
         if (_.isArray(jsonContent)) {
