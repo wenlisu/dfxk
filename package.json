@@ -2,7 +2,7 @@
 	"name": "dfxk",
 	"displayName": "dfxk",
 	"description": "dfxk",
-	"version": "0.0.9",
+	"version": "0.0.10",
 	"publisher": "List",
 	"engines": {
 		"vscode": "^1.30.0"
