@@ -67,11 +67,11 @@ class Json2Ts{
                 optionalKeys.push(key);
             }
         }
+        var result = this.formatCharsToTypeScript(jsonContent, objectName, optionalKeys);
         if(this.indexBox.indexOf(objectName) > -1) {
             return;
         } else {
             this.indexBox = [...this.indexBox, objectName];
-            var result = this.formatCharsToTypeScript(jsonContent, objectName, optionalKeys);
             objectResult.push(result);
             return objectResult.join("\n\n");
         }
