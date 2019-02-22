@@ -13,6 +13,7 @@
 	"activationEvents": [
 		"onCommand:extension.dfxk"
 	],
+	"icon": "dfxk-logo.png",
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [

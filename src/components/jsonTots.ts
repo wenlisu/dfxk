@@ -4,7 +4,7 @@ class Json2Ts{
     private scope: any;
     private indexBox: Array<any>;
 
-    constructor(props: any) {
+    constructor() {
         this.indexBox = [];
     }
 
