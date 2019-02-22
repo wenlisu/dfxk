@@ -68,7 +68,7 @@ class GetDtoJson {
                     this.onReadDto(res.repository.result.json);
                 }
                 else if (!res.isOk) {
-                    vsHelp_1.default.showInfo(`${res.message}请检查接口工具`);
+                    vsHelp_1.default.showInfo(`${res.message}，请检查接口工具`);
                 }
                 else if (!res || res === undefined) {
                     vsHelp_1.default.showInfo(`请检查接口工具服务是否关闭`);
@@ -133,7 +133,7 @@ class GetDtoJson {
         this.initialize();
     }
     /**
-     * 执行执行函数
+     * 指令执行函数
      *
      * @returns {void}
      * @memberof dfxk

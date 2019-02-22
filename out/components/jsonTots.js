@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const _ = require("underscore");
 class Json2Ts {
-    constructor() {
+    constructor(props) {
         this.convert = (content, scope) => {
             this.scope = scope;
             var jsonContent = content;
@@ -72,9 +72,15 @@ class Json2Ts {
                     optionalKeys.push(key);
                 }
             }
-            var result = this.formatCharsToTypeScript(jsonContent, objectName, optionalKeys);
-            objectResult.push(result);
-            return objectResult.join("\n\n");
+            if (this.indexBox.indexOf(objectName) > -1) {
+                return;
+            }
+            else {
+                this.indexBox = [...this.indexBox, objectName];
+                var result = this.formatCharsToTypeScript(jsonContent, objectName, optionalKeys);
+                objectResult.push(result);
+                return objectResult.join("\n\n");
+            }
         };
         this.detectMultiArrayTypes = (value, valueType) => {
             if (valueType === void 0) {
@@ -168,6 +174,7 @@ class Json2Ts {
         this.toLowerFirstLetter = (text) => {
             return text.charAt(0).toLowerCase() + text.slice(1);
         };
+        this.indexBox = [];
     }
 }
 exports.default = new Json2Ts();

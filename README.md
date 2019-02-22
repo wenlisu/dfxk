@@ -1,4 +1,8 @@
-**Enjoy!**
+## Add this to your vscode.
+
+GitHub: [https://github.com/wenlisu/dfxk](https://github.com/wenlisu/dfxk)
+
+Vscode Market: [https://marketplace.visualstudio.com/items?itemName=List.dfxk](https://marketplace.visualstudio.com/items?itemName=List.dfxk)
 
 ## Config 配置项
 
@@ -16,3 +20,5 @@
 "dfxk.email": "415357008@qq.com",
 "dfxk.password": "123",
 ```
+
+**Enjoy!**

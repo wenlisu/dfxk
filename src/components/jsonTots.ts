@@ -2,6 +2,11 @@ import * as _ from 'underscore';
 
 class Json2Ts{
     private scope: any;
+    private indexBox: Array<any>;
+
+    constructor(props: any) {
+        this.indexBox = [];
+    }
 
     convert = (content: any, scope: any) => {
         this.scope = scope;
@@ -62,9 +67,14 @@ class Json2Ts{
                 optionalKeys.push(key);
             }
         }
-        var result = this.formatCharsToTypeScript(jsonContent, objectName, optionalKeys);
-        objectResult.push(result);
-        return objectResult.join("\n\n");
+        if(this.indexBox.indexOf(objectName) > -1) {
+            return;
+        } else {
+            this.indexBox = [...this.indexBox, objectName];
+            var result = this.formatCharsToTypeScript(jsonContent, objectName, optionalKeys);
+            objectResult.push(result);
+            return objectResult.join("\n\n");
+        }
     }
     detectMultiArrayTypes = (value?: any, valueType?: any) => {
         if (valueType === void 0) {
